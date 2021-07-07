@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url("./components/_normalize.scss");
+html,
+body {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+    width: 90%;
+    margin: auto;
+    padding: 50px 0;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}

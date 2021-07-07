@@ -1,0 +1,69 @@
+.container-buscador {
+    background-image: url('../../../assets/img/img_header_sinFiltro.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    &::after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+    }
+}
+
+.mat-option {
+    #resaltar {
+        background-color: #FFFF00!important;
+    }
+}
+
+.form-buscador {
+    background-color: #fff;
+    ;
+    width: 100%;
+    padding: 1em;
+}
+
+.buscador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    @media(max-width: 360px) {
+        flex-direction: column;
+    }
+    &__container {
+        position: relative;
+    }
+    &__radio-buttons {
+        display: flex;
+        justify-content: center;
+        mat-radio-button {
+            padding: 1em;
+        }
+    }
+    &__inputs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        @media (max-width: 360px) {
+            flex-direction: column;
+        }
+        mat-form-field {
+            padding: 0 .5em;
+        }
+    }
+    &__button {
+        margin-top: 2em;
+    }
+}

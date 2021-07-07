@@ -1,0 +1,40 @@
+.buscador {
+    &__card {
+        &-pasajeros {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 0px 0px;
+            div {
+                text-align: center;
+            }
+        }
+        &-item {
+            span {
+                display: block;
+            }
+            button {
+                width: auto;
+                min-width: unset;
+                padding: unset;
+                line-height: unset;
+            }
+            input {
+                width: 30px;
+                height: 30px;
+                margin: 0 2% 0 2%;
+                text-align: center;
+            }
+        }
+        &-options {
+            display: flex;
+            justify-content: center;
+            mat-radio-button {
+                padding: 1em;
+            }
+        }
+        &-button {
+            width: 100%;
+        }
+    }
+}
