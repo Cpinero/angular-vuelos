@@ -3,7 +3,9 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
+import { PasajerosServiceService } from '../../services/pasajeros-service.service';
 import {PasajerosComponent} from'../pasajeros/pasajeros.component';
+
 
 @Component({
   selector: 'app-buscador',
@@ -18,6 +20,7 @@ export class BuscadorComponent implements OnInit {
   filteredOptions1: Observable<string[]> | undefined;
   tipo_vuelo: string = '2';
   touchUi:boolean = false;
+  adultos:number = 0;
   
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -26,20 +29,24 @@ export class BuscadorComponent implements OnInit {
   }
 
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,private _ps:PasajerosServiceService) { }
 
   ngOnInit() {
     if(window.screen.width <= 360){
       this.touchUi = true;
       console.log(this.touchUi)
     }
+    this._ps.disparador.subscribe(data =>{
+      console.log(data)
+      localStorage.setItem("dataPasajeros", JSON.stringify(data));
+    })
   }
   openDialog(){
     this.dialog.open(PasajerosComponent,{
-      height: '400px',
-  width: '600px',
+      width: '600px',
     });
   }
+
   autoOrigen(value:string){
     if(value.length >= 3){
       this.filteredOptions = this.myControl.valueChanges
