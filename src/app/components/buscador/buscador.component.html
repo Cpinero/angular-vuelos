@@ -3,7 +3,7 @@
         <div class="buscador">
             <div class="buscador__container">
                 <div class="buscador__radio-buttons">
-                    <mat-radio-group aria-label="Select an option" [(ngModel)]="tipo_vuelo" name="tipo_vuelo">
+                    <mat-radio-group aria-label="Select an option" [(ngModel)]="tipoVuelo" name="tipoVuelo">
                         <mat-radio-button value="1">Ida y vuelta</mat-radio-button>
                         <mat-radio-button value="2">Solo ida</mat-radio-button>
                     </mat-radio-group>
@@ -14,7 +14,7 @@
                         <input #origen (keyup)="autoOrigen(origen.value)" type="text" placeholder="¿Desde donde sales?" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
                         <mat-autocomplete #auto="matAutocomplete">
                             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                <span>CUM</span> {{option}},Venezuela
+                                {{option}}
                             </mat-option>
                         </mat-autocomplete>
                     </mat-form-field>
@@ -27,7 +27,7 @@
                             </mat-option>
                         </mat-autocomplete>
                     </mat-form-field>
-                    <mat-form-field appearance="outline" *ngIf="tipo_vuelo == '1'">
+                    <mat-form-field appearance="outline" *ngIf="tipoVuelo == '1'">
                         <mat-label>Ida y Vuelta</mat-label>
                         <mat-date-range-input [rangePicker]="picker">
                             <input matStartDate placeholder="Fecha Ida" readonly>
@@ -36,7 +36,7 @@
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-date-range-picker [touchUi]="touchUi" #picker></mat-date-range-picker>
                     </mat-form-field>
-                    <mat-form-field appearance="outline" *ngIf="tipo_vuelo == '2'">
+                    <mat-form-field appearance="outline" *ngIf="tipoVuelo == '2'">
                         <mat-label>Solo Ida</mat-label>
                         <input matInput [matDatepicker]="picker" readonly>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

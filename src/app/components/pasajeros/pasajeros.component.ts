@@ -10,31 +10,32 @@ import { BuscadorComponent } from '../buscador/buscador.component';
 })
 export class PasajerosComponent implements OnInit {
 
-  public tipo_clase:string = "2";
-  public adultos:number = 1;
-  public ninos:number = 0;
-  public bebes:number = 0;
-  public numeroPasajeros:any;
-  constructor(private _ps:PasajerosServiceService,public dialogRef: MatDialogRef<BuscadorComponent>) {}
+  public tipoClase: string = "2";
+  public adultos: number = 1;
+  public ninos: number = 0;
+  public bebes: number = 0;
+  public numeroPasajeros: any;
+  constructor(private _ps: PasajerosServiceService, public dialogRef: MatDialogRef<BuscadorComponent>) {}
 
   ngOnInit(): void {
-    if(localStorage.getItem("dataPasajeros")){
-      this.numeroPasajeros = JSON.parse(localStorage.getItem("dataPasajeros")!);
+    if (localStorage.getItem('dataPasajeros')){
+      // tslint:disable-next-line: no-non-null-assertion
+      this.numeroPasajeros = JSON.parse(localStorage.getItem('dataPasajeros')!);
       this.adultos = this.numeroPasajeros.adultos;
       this.ninos = this.numeroPasajeros.ninos;
       this.bebes = this.numeroPasajeros.bebes;
-      this.tipo_clase = this.numeroPasajeros.tipo_clase;
+      this.tipoClase = this.numeroPasajeros.tipo_clase;
     }
   }
-  guardarLocal(){
+  guardarLocal(): void{
     this._ps.disparador.emit({
       adultos: this.adultos,
       ninos: this.ninos,
       bebes: this.bebes,
-      tipo_clase: this.tipo_clase
+      tipo_clase: this.tipoClase
     });
   }
-  sumarPasajeros(pasajero:string){
+  sumarPasajeros(pasajero: string): void{
     switch (pasajero) {
       case 'adultos':
         this.adultos = this.adultos + 1;
@@ -49,44 +50,44 @@ export class PasajerosComponent implements OnInit {
         this.guardarLocal();
         break;
       default:
-        break
+        break;
     }
   }
-  restarPasajeros(pasajero:string){
+  restarPasajeros(pasajero: string): void{
     switch (pasajero){
       case 'adultos':
-        if(this.adultos == 1){
-          return
+        if (this.adultos === 1){
+          return;
         }else{
           this.adultos = this.adultos - 1;
           this.guardarLocal();
         }
-      break;
+        break;
       case 'ninos':
-        if(this.ninos == 0){
-          return
+        if (this.ninos === 0){
+          return;
         }else{
           this.ninos = this.ninos - 1;
           this.guardarLocal();
         }
-      break;
+        break;
       case 'bebes':
-        if(this.bebes == 0){
-          return
+        if (this.bebes === 0){
+          return;
         }else{
           this.bebes = this.bebes - 1;
           this.guardarLocal();
         }
-      break;
+        break;
       default:
       break;
     }
   }
-  tipoClase(){
-    this.tipo_clase = this.tipo_clase;
-    this.guardarLocal()
+  Clase(): void{
+    this.tipoClase = this.tipoClase;
+    this.guardarLocal();
   }
-  cerrarDialog(){
+  cerrarDialog(): void{
     this.dialogRef.close();
   }
 
